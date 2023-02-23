@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                  String         @id @default(cuid())
+  name                String?
+  email               String?        @unique
+  emailVerified       DateTime?
+  image               String?
+  accounts            Account[]
+  sessions            Session[]
+  major               String         @default("NA") @db.String(2)
+  graduate            String         @default("U") @db.String(1)
+  courses             String         @default("[]")
+  about               String         @default("") @db.String(1000)
+  slug                String?        @unique
+  ownedConversations  Conversation[] @relation("Owner")
+  memberConversations Conversation[] @relation("Member")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  slug      Int
+  ownerId   String
+  memberId  String
+  accepted  Boolean  @default(false)
+  messages  String[] @default([])
+  updatedAt DateTime @updatedAt
+  owner     User     @relation(name: "Owner", fields: [ownerId], references: [id], onDelete: Cascade)
+  member    User     @relation(name: "Member", fields: [memberId], references: [id], onDelete: Cascade)
+}

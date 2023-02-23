@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* 
+    Base & Typography
+  */
+  html {
+    @apply font-main bg-gray-100 scroll-smooth scroll-pt-14 md:scroll-pt-16;
+  }
+  h1, .h1 {
+    @apply text-3xl md:text-4xl lg:text-5xl leading-sm tracking-sm font-bold text-gray-700;
+  }
+  h2, .h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl leading-sm tracking-sm font-bold text-gray-700;
+  }
+  h3, .h3 {
+    @apply text-xl md:text-xl lg:text-2xl leading-sm tracking-sm font-bold text-gray-700;
+  }
+  h4, .h4 {
+    @apply text-md md:text-lg lg:text-xl leading-sm tracking-sm font-bold text-gray-700;
+  }
+  p, .p, p > a, ul, ol, label, input {
+    @apply text-sm md:text-md lg:text-lg leading-xl tracking-md font-normal text-gray-700;
+  }
+  a, button {
+    @apply inline-block text-xs md:text-sm lg:text-md leading-xs tracking-md duration-75 transition-colors;
+  }
+  ul, ol {
+    @apply ml-5 md:ml-6 space-y-2 md:space-y-3;
+  }
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
+  :focus-visible {
+    @apply !outline-none !shadow-[0_0_0_3px_#369df7];
+  }
+}
+
+/* 
+  UI - Common
+*/
+.px-md {
+  @apply px-6 md:px-14 lg:px-24;
+}
+.py-md {
+  @apply py-8 md:py-10 lg:py-12;
+}
+.container {
+  @apply relative max-w-9xl w-full px-md mx-auto;
+}
+.card {
+  @apply bg-gray-200 hover:bg-gray-300 duration-200 rounded-xl;
+}
+.cta {
+  @apply flex flex-wrap items-center gap-2 md:gap-3 mt-4 md:mt-6;
+}
+.layout-split {
+  @apply space-y-10 xl:space-y-0 xl:space-x-14 2xl:space-x-20;
+}
+.course {
+  @apply 2xl:flex space-y-4 2xl:space-y-0 2xl:space-x-4;
+}
+.fui-modal {
+  @apply z-50 origin-center duration-[0.4s];
+}
+.fui-modal-active {
+  @apply visible opacity-100;
+  transform: scale3d(1, 1, 1);
+}
+.fui-modal-inactive {
+  @apply invisible opacity-0;
+  transform: scale3d(0.75, 0.75, 1);
+}
+.fui-modal-bg {
+  @apply z-40;
+}
+.fui-modal-bg-inactive {
+  @apply invisible;
+}
+.fui-dropdown {
+  @apply z-30 min-w-max bg-gray-100 shadow-sm rounded-xl top-3 duration-200 px-6 py-5;
+}
+.fui-dropdown-active {
+  @apply visible opacity-100;
+  transform: scale3d(1, 1, 1);
+}
+.fui-dropdown-inactive {
+  @apply invisible opacity-0;
+  transform: scale3d(0.9, 0.9, 1);
+}
+.toast-info {
+  @apply border-info-500;
+}
+.toast-success {
+  @apply border-green-400;
+}
+.toast-error {
+  @apply border-error-500;
+}
+.toast-active {
+  @apply visible opacity-100;
+  transform: translate3d(0, 0, 0);
+}
+.toast-inactive {
+  @apply invisible opacity-0;
+  transform: translate3d(35%, 0, 0);
+}
+.profile-label {
+  @apply font-bold mb-0.5;
+}
+.profile-value {
+  @apply max-h-32 border-b-2 border-gray-300 px-5 md:px-6 py-3 md:py-3.5;
+}
+.link-group {
+  @apply inline-flex flex-wrap gap-3;
+}
+
+.tooltip, .fui-error-modal {
+  @apply min-w-max flex items-center bg-gray-100 rounded-3xl shadow-sm origin-top-left duration-200 text-xs md:text-sm lg:text-md text-gray-700 px-3.5 md:px-4 py-1.5 mt-2;
+}
+.tooltip svg, .fui-error-modal svg {
+  @apply w-3.5 md:w-4 mr-1.5;
+  transform: scale3d(1, 1, 1);
+}
+
+/*
+  UI - Buttons
+*/
+.btn {
+  @apply inline-flex justify-center items-center rounded-lg px-6 py-4;
+}
+.btn > svg {
+  @apply w-4 order-[-1] mr-2;
+}
+.btn-nav {
+  @apply w-full justify-start hover:bg-green-900/[0.15] text-lg font-semibold text-gray-100 px-5 py-3;
+}
+.btn-google {
+  @apply bg-gray-200 hover:bg-gray-300;
+}
+.btn-github {
+  @apply bg-github-600 hover:bg-github-500 text-gray-100;
+}
+.btn-discord {
+  @apply bg-discord-600 hover:bg-discord-500 text-gray-100;
+}
+.btn-light {
+  @apply bg-gray-200 hover:bg-gray-300;
+}
+.btn-light:disabled {
+  @apply bg-gray-400 cursor-not-allowed;
+}
+.btn-save {
+  @apply bg-green-500 hover:bg-green-400 text-gray-100;
+}
+.btn-save:disabled {
+  @apply bg-green-600 cursor-not-allowed;
+}
+.btn-warning {
+  @apply bg-error-600 hover:bg-error-500 text-gray-100;
+}
+.btn-warning:disabled {
+  @apply bg-error-700 cursor-not-allowed;
+}
+.btn-remove {
+  @apply 2xl:p bg-error-600 hover:bg-error-500 !text-gray-100 px-5 md:px-6 py-3 md:py-3.5;
+}
+.btn-remove:disabled {
+  @apply bg-error-700 cursor-not-allowed;
+}
+
+/*
+  UI - Forms
+*/
+.fui-field {
+  @apply block;
+}
+.fui-field input, .fui-field textarea, .fui-field select {
+  @apply block w-full bg-gray-200 hover:bg-gray-300 rounded-xl duration-200 px-5 md:px-6 py-3 md:py-3.5;
+}
+.fui-field-invalid {
+  @apply -mb-3 md:-mb-2;
+}
+.fui-field-invalid input, .fui-field-invalid textarea, .fui-field-invalid select {
+  @apply border-error-500;
+}
+.fui-field textarea {
+  @apply h-44 md:h-64 resize-none;
+}
+.fui-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.fui-label {
+  @apply block font-bold mb-0.5;
+}
+.fui-select-icon {
+  @apply text-gray-500 w-3 md:w-3.5 mt-0.5 mr-4 md:mr-5;
+}
+.fui-check {
+  @apply w-5 h-5 rounded-sm border-2 border-gray-400 text-[rgba(0,0,0,0)] p-0.5 mr-3 mt-[3px] md:mt-1;
+}
+.fui-checkbox input:checked ~ .fui-check {
+  @apply bg-gray-500 text-gray-100;
+}
+.fui-checkbox input:focus ~ .fui-check {
+  @apply !outline-none !shadow-[0_0_0_3px_#369df7];
+}
+.fui-info {
+  @apply text-xs md:text-sm lg:text-md leading-xs text-error-500 mt-2;
+}
+.fui-info svg {
+  @apply w-3.5 md:w-4 mr-1.5;
+}
+::placeholder {
+  @apply text-gray-600 !important;
+}
